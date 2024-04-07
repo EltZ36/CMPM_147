@@ -12,6 +12,10 @@
 	<!-- Include CSS file, including a site-wide CSS and for this particular page -->
 	<link rel="stylesheet" type="text/css" href="../css/site.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- load in the fonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 	<!-- Load jQuery library -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
@@ -24,14 +28,11 @@
     <script type="text/javascript" src="../js/site.js" DEFER></script>
 	<!-- Use me for a JavaScript OOP Project -->
 	<script type="text/javascript" src="./js/project.js" DEFER></script>
-	<!-- Use me for a p5.js project -->
-	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
-
 			<h1>Experiment 1 - Getting Started</h1>
 
 			<div class="minor-section">
@@ -44,23 +45,19 @@
 				  <button id = "default_opt">
 					use default for randomness 
 				  </button>
-				  <div id = "card_select">
-				  <button id = "top">
+				<button id = "top">
 					Get result 1
-				  </button>
-				  <button id = "bottom">
+				</button>
+				<button id = "bottom">
 					Get result 2 
-				  </button>
-				</div>
-                <div class="fullscreen-box">
-                    <button id="fullscreen">Fullscreen</button>
-                </div>
+				</button>
+			    <div id="box"></div>
 			</div>
 
 			<div class="minor-section">
 				<h2>Description</h2>
 				<p>What are you trying to acomplish with this experiment?</p>
-				<p>For this experiment, we are trying to create a simple text generator similar to a Mab Libs.</p>
+				<p>For this experiment, we are trying to create a simple text generator similar to a Mab Libs. This one is supposed to generate an online recipt similar to one you would find from Amazon.</p>
 			</div>
 
 			<div class="minor-section">

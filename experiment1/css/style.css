@@ -10,10 +10,20 @@ canvas {
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: column;
 }
 
 #canvas-container {
     width: 100%;
     height: 600px;
+}
+
+#box{
+    font-family: fantasy; 
+    border: thin solid gray; 
+    padding: 1em; margin: 1em; 
+    box-shadow: 2px 2px 5px gray; 
+    background: #ffffff;
+    /*https://stackoverflow.com/questions/4535888/how-to-include-newlines-in-jquery-text*/ 
+    white-space: pre-line;
 }
