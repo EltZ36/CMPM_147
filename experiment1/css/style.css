@@ -27,3 +27,20 @@ body {
     /*https://stackoverflow.com/questions/4535888/how-to-include-newlines-in-jquery-text*/ 
     white-space: pre-line;
 }
+
+h1{
+    padding-left: 20px;
+}
+h2, h4, p{
+    padding-left: 10px;
+}
+li{
+    align-content: center;
+}
+
+.photo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
