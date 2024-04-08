@@ -366,6 +366,7 @@ function main() {
   //add an additional shuffle based on Fisher Yates Algorithm
   //sources: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle 
   //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array 
+  //https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/ 
   function shuffle(arr){
     for (let i = arr.length - 1; i > 0; i--)
       {
