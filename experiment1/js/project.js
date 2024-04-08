@@ -382,7 +382,7 @@ function main() {
   
   function replacer(match, name) {
     let options = fillers[name];
-    console.log('replacing')
+    console.log(numbers)
     if (options && numbers == 0) {
       return options[Math.floor(Math.random() * options.length)];
     } 
