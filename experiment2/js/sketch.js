@@ -14,23 +14,33 @@ const VALUE2 = 2;
 let myInstance;
 let canvasContainer;
 var centerHorz, centerVert;
+const WIDTH = 800
+const HEIGHT = 600
 
-class MyClass {
-    constructor(param1, param2) {
-        this.property1 = param1;
-        this.property2 = param2;
-    }
+let x = 0;
+let y = 0;
+let z = 0;
 
-    myMethod() {
-        // code to run when method is called
-    }
+let translationBounds = {
+  x: -300,
+  y: -270,
 }
 
+// mountains
+let x1 = new Mountain(35, 0, -250, 35, undefined, [79, 64, 50])
+let x2 = new Mountain(35, 0, -220, 35, undefined, [119, 98, 77])
+let x3 = new perlinMountain(0)
+
+//cacti
+let c1 = new Cactus(200, 100, 25, 90, 1.0)
+let c2 = new Cactus(200, 150, 25, 90, 1.0)
+let c3 = new Cactus(200, 200, 25, 90, 1.0)
+
 function resizeScreen() {
-  centerHorz = canvasContainer.width() / 2; // Adjusted for drawing logic
-  centerVert = canvasContainer.height() / 2; // Adjusted for drawing logic
+  centerHorz = WIDTH / 2; // Adjusted for drawing logic
+  centerVert = HEIGHT / 2; // Adjusted for drawing logic
   console.log("Resizing...");
-  resizeCanvas(canvasContainer.width(), canvasContainer.height());
+  resizeCanvas(WIDTH, HEIGHT);
   // redrawCanvas(); // Redraw everything based on new size
 }
 
@@ -38,42 +48,61 @@ function resizeScreen() {
 function setup() {
   // place our canvas, making it fit our container
   canvasContainer = $("#canvas-container");
-  let canvas = createCanvas(canvasContainer.width(), canvasContainer.height());
+  let canvas = createCanvas(WIDTH, HEIGHT, WEBGL);
   canvas.parent("canvas-container");
   // resize canvas is the page is resized
-
-  // create an instance of the class
-  myInstance = new MyClass("VALUE1", "VALUE2");
 
   $(window).resize(function() {
     resizeScreen();
   });
   resizeScreen();
+  frameRate(60)
+  background(199,179,191)
+  x3.generatePerlinMountains()
 }
 
-// draw() function is called repeatedly, it's the main animation loop
-function draw() {
-  background(220);    
-  // call a method on the instance
-  myInstance.myMethod();
+function draw(){  
+    
+  //background color
+  background(199,179,191)
 
-  // Set up rotation for the rectangle
-  push(); // Save the current drawing context
-  translate(centerHorz, centerVert); // Move the origin to the rectangle's center
-  rotate(frameCount / 100.0); // Rotate by frameCount to animate the rotation
-  fill(234, 31, 81);
-  noStroke();
-  rect(-125, -125, 250, 250); // Draw the rectangle centered on the new origin
-  pop(); // Restore the original drawing context
+  x += 2 //incrment x for translation of sphere
+  //reset for the sphere 
+  if (x > 920) { 
+    x = -20
+  }
+  y = -height / 2 + 30 * sin(x / 400)
 
-  // The text is not affected by the translate and rotate
-  fill(255);
-  textStyle(BOLD);
-  textSize(140);
-  text("p5*", centerHorz - 105, centerVert + 40);
+  // render the mountains
+  x1.render()
+  x2.render()
+  x3.render()
+
+  //set fill color for ground
+  fill(227, 191, 144)
+  rect(-(WIDTH/2), 0, 800, (HEIGHT/2))
+
+  //render the cacti
+  c1.show()
+  c2.show()
+  c3.show()
+
+  //don't rotate and translate the other things 
+  noStroke()
+  push()
+  fill(255, 255, 0); // Sphere color
+  translate(x-500, y+10, 0) // Move the sphere to its position
+  sphere(20, 15) // Draw the sphere
+  pop()
 }
 
-// mousePressed() function is called once after every time a mouse button is pressed
-function mousePressed() {
-    // code to run when mouse is pressed
+//interactivity
+function mousePressed(){
+  x1.reset()
+  x2.reset()
+  x3.reset()
+  x3.generatePerlinMountains(0)
+  c1.generate()
+  c2.generate()
+  c3.generate()
 }
