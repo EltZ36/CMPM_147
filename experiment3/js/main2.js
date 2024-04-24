@@ -64,18 +64,12 @@ function setup() {
 
   reseed();
   
-  weatherButton = createButton('Change Weather')
-  weatherButton.position(200,438)
-  weatherButton.mousePressed(switchWeather);
-
-  var weather = true 
-  
 }
 
 
 function draw() {
   randomSeed(seed);
-  drawGrid(currentGrid, weather);
+  drawGrid(currentGrid);
 }
 
 function placeTile(i, j, ti, tj) {

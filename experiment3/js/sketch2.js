@@ -12,109 +12,50 @@ function generateGrid(numCols, numRows) {
       }
       grid.push(row);
     }
-    
-    let dirtX = floor(random(0,15));
-    let dirtY = floor(random(0,15));
-    
-    
-    //let room1_col = floor(random(7, 9));
-    //let room1_row = floor(random(10, 15));
-    for (let i = dirtX; i < numCols; i++) {
-      for (let j = dirtY; j < numRows; j++) {
-        grid[i][j] = ".";
-      }
-    }
-    generateTree(grid)
-    generateRiver(grid, 2, 5, 3, 90, 98);
+    generateRiver(grid, 1, 8, 5, 50, 80)
+    generateLoot(grid);
     return grid;
     //if water touches a chest == chest sinks and turns into water a couple frames later
   }
   
-  var timer = 2000
-  var nextChange = 0
-  var changeWater = false 
-  var weather = false
+  var timer = 2000;
+  var nextChange = 0;
+  var changeWater = true;
   
-  function changeFlag(){
-    changeWater = !changeWater
+  function changeFlag() {
+    changeWater = !changeWater;
   }
-
-  function switchWeather() {
-    weather = !weather
-  }
-            
-  function drawGrid(grid, weather) {
+  
+  function drawGrid(grid) {
     background(128);
   
     for (let i = 0; i < grid.length; i++) {
       for (let j = 0; j < grid[i].length; j++) {
-        if (weather == true) {
-          if (grid[i][j] == "_") {
-            placeTile(i, j, floor(random(0, 4)), 0);
-            //placeTile(i, j, 20, 12);
-            drawContext(grid, i, j, "_", 2, 0, weather);
-            //drawContext(grid, i, j, "_", 20, 12);
-          }
-          if (grid[i][j] == ".") {
-            placeTile(i, j, floor(random(0, 4)), 3);
-            //drawContext(grid, i, j, ".", 0, 12);
-            drawContext(grid, i, j, ".", 0, 3, weather);
-          }
-          if (grid[i][j] == "r") {
-            //var cycle = floor(random(0, 4))
-            if((millis() - nextChange >= timer)){
+        if((millis() - nextChange >= timer)){
               changeFlag()
               nextChange = millis()
-            }
-            if(changeWater == true){
-              placeTile(i, j, floor(random(1,3)), 14)
-              drawContext(grid, i, j, "r", 14, 1, weather);
-            }
-            if(changeWater == false){
-              changeWater = false
-              placeTile(i, j, 0, 14)
-              drawContext(grid, i, j, "r", 14, 1, weather);  
-            }
+        }
+        if (grid[i][j] == "_") {
+          //placeTile(i, j, floor(random(0, 4)), 21);
+          placeTile(i, j, floor(random(1, 3)), 21)
+          drawContext(grid, i, j, "_", 1, 21);
+          //drawContext(grid, i, j, "_", 20, 12);
+        }
+        if (grid[i][j] == ".") {
+          placeTile(i, j, floor(random(0, 4)), 15);
+          //drawContext(grid, i, j, ".", 0, 12);
+          drawContext(grid, i, j, ".", 0, 15);
+        }
+        if (grid[i][j] == "w") {
+          if(changeWater == false){
+            placeTile(i, j, floor(random(0,4)), 14);
           }
-          if(grid[i][j] == "m"){
-            placeTile(i, j, 16, floor(random(10, 12)));
+          else{
+            placeTile(i, j, floor(random(12,14)), 20)
           }
-          if(grid[i][j] == "t"){
-            placeTile(i, j, 16, floor(random(0,2)));
-          }
-        } 
-        else {
-          if (grid[i][j] == "_") {
-            placeTile(i, j, floor(random(0, 4)), 12);
-            //placeTile(i, j, 2, 0);
-            drawContext(grid, i, j, "_", 2, 12);
-          }
-          if (grid[i][j] == ".") {
-            placeTile(i, j, floor(random(0, 4)), 3);
-            drawContext(grid, i, j, ".", 0, 3);
-          }
-          if (grid[i][j] == "r") {
-            //var cycle = floor(random(0, 4))
-            if((millis() - nextChange >= timer)){
-              changeFlag()
-              nextChange = millis()
-            }
-            if(changeWater == true){
-              placeTile(i, j, floor(random(1,3)), 14)
-              drawContext(grid, i, j, "r", 14, 1);
-            }
-            if(changeWater == false){
-              changeWater = false
-              placeTile(i, j, 0, 14)
-              drawContext(grid, i, j, "r", 14, 1);  
-            }
-          }
-          if(grid[i][j] == "m"){
-            placeTile(i, j, 22, floor(random(10,12)))
-          }
-          if(grid[i][j] == "t"){
-            placeTile(i, j, 16, floor(random(12,14)));
-          }
+        }
+        if (grid[i][j] == "c") {
+          placeTile(i, j, floor(random(0,6)), 28);
         }
       }
     }
@@ -375,77 +316,45 @@ function generateGrid(numCols, numRows) {
     [0, 0],
   ];
   
-  //[14, 1]
- /* const snowWaterTiles = [
-    //0
-//0
-[14, 1],
-//1
-[14, 1],
-//2
-[14, 1],
-//3
-[11, 14],
-//4
-[14, 1],
-//5
-[9, 14],
-//6
-[14, 1],
-//7
-[10, 14],
-//8
-[14, 1],
-//9
-[14, 1],
-//10
-[11, 12],
-//11
-[11, 13],
-//12
-[9, 12],
-//13
-[9, 13],
-//14
-[10, 12],
-//15
-[14, 1], 
-  ] */
-
   const snowWaterOffsets = [
-    //0
-    [0,0],
-    //1
-    [0,0],
-    //2
-    [0,0],
-    //3
-    [-3, 13],
-    //4 
-    [0,0],
-    //5
-    [-5, 13],
-    //6
-    [0,0],
-    //7
-    [-4, 13],
-    //8
-    [0, 0],
-    //9
-    [0, 0],
-    //10
-    [-3, 11],
-    //11
-    [-3, 12],
-    //12
-    [-5, 11],
-    //13
-    [-5, 12],
-    //14
-    [-4, 11],
-    //15
-    [0, 0],
+      //0
+      [0,0],
+      //1
+      [0,0],
+      //2
+      [0,0],
+      //3
+      [-3, 13],
+      //4 
+      [0,0],
+      //5
+      [-5, 13],
+      //6
+      [0,0],
+      //7
+      [-4, 13],
+      //8
+      [0, 0],
+      //9
+      [0, 0],
+      //10
+      [-3, 11],
+      //11
+      [-3, 12],
+      //12
+      [-5, 11],
+      //13
+      [-5, 12],
+      //14
+      [-4, 11],
+      //15
+      [0, 0],
   ];
+  
+  
+  const snowDirtOffsets = [];
+  
+  const snowGrassOffsets = [];
   
   //ask question on how to make sure autotilling works as this one is each line instead of the other way
   
@@ -453,12 +362,7 @@ function generateGrid(numCols, numRows) {
   function drawContext(grid, i, j, target, ti, tj) {
     // TODO
     var code = gridCode(grid, i, j, target);
-    if(weather == true){
-    if (isNaN(code) == false && target == "r") {
-      //const [tiX, tjY] = dirtTilesRiver[code];
-      const [tiOffset, tjOffset] = dirtOffsetRiver[code];
-      placeTile(i, j, ti + tiOffset, tj + tjOffset);
-    } else if (isNaN(code) == false && target == ".") {
+    if (isNaN(code) == false && target == ".") {
       //const [tiX, tjY] = dirtTiles[code];
       const [tiOffset, tjOffset] = dirtOffsets[code];
       placeTile(i, j, ti + tiOffset, tj + tjOffset);
@@ -466,24 +370,7 @@ function generateGrid(numCols, numRows) {
       //const [tiX, tjY] = grassTiles[code];
       const [tiOffset, tjOffset] = grassOffsets[code];
       placeTile(i, j, ti + tiOffset, tj + tjOffset);
-    }
-    }
-    else{
-        if(isNaN(code) == false && target == "r"){
-            const [tiOffset, tjOffset] = snowWaterOffsets[code];
-            placeTile(i, j, ti + tiOffset, tj + tjOffset);
-        }
-        else if (isNaN(code) == false && target == ".") {
-            //const [tiX, tjY] = dirtTiles[code];
-            const [tiOffset, tjOffset] = dirtOffsets[code];
-            placeTile(i, j, ti + tiOffset, tj + tjOffset);
-          } else if (isNaN(code) == false && target == "_") {
-            //const [tiX, tjY] = grassTiles[code];
-            const [tiOffset, tjOffset] = grassOffsets[code];
-            placeTile(i, j, ti + tiOffset, tj + tjOffset);
-        }
-    }   
-  }
+    }}
   
   //code snippet taken from https://blog.unity.com/engine-platform/procedural-patterns-to-use-with-tilemaps-part-2
   function generateRiver(
@@ -495,14 +382,14 @@ function generateGrid(numCols, numRows) {
     curvyness
   ) {
     //This value goes from its minus counterpart to its positive value, in this case with a width value of 1, the width of the tunnel is 3
-    var tunnelWidth = 1;
+    var tunnelWidth = 2;
     //Set the start X position to the center of the tunnel
     var x = floor(random(5, 15));
     //System.Random rand = new System.Random(Time.time.GetHashCode());
   
     //Create the first part of the tunnel
     for (let i = -tunnelWidth; i <= tunnelWidth; i++) {
-      grid[x+i][0] = "r";
+      grid[0][x+i] = ".";
     }
     //Cycle through the array
     for (let y = 1; y < grid.length; y++) {
@@ -540,26 +427,27 @@ function generateGrid(numCols, numRows) {
   
       //Work through the width of the tunnel
       for (let i = -tunnelWidth; i <= tunnelWidth; i++) {
-        let result = x + i
-        grid[result][y] = "r";
+        let result = x + i;
+        grid[y][result] = ".";
       }
     }
     //console.log(grid)
     return grid;
   }
   
-  function generateTree(grid){
-    for(let i = 0; i < grid.length; i++){
-      for(let j = 0; j < grid.length; j++){
-        let chance = (random(0 , 1))
-        if(grid[i][j] != "r" && grid[i][j] == "_"){
-          if(chance <= 0.01 && chance < 0.03){
-            grid[i][j] = "m"
+  function generateLoot(grid) {
+    for (let i = 0; i < grid.length - 1; i++) {
+      for (let j = 0; j < grid.length - 1; j++) {
+        let chance = random(0, 1);
+        if (grid[i][j] == "." && grid[i + 1][j + 1] == "." && (grid[i][j + 1] == ".")){
+          if (chance <= 0.01 && chance < 0.03) {
+            grid[i][j] = "c";
           }
-          if(chance > 0.03 && chance < 0.05){
-            grid[i][j] = "t"
+          if (chance > 0.03 && chance < 0.05) {
+            grid[i][j] = "w";
           }
         }
       }
     }
   }
+  

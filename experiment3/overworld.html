@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- This title is used for tabs and bookmarks -->
-	<title>Experiment 3 - Alternate Worlds Overworld</title>
+	<title>Experiment 3 - Alternate Worlds Underworld</title>
 
 	<!-- Use UTF character set, a good idea with any webpage -->
 	<meta charset="UTF-8" />
@@ -23,15 +23,15 @@
 	<!-- Link to javascript files - DEFER waits until all elements are rendered -->
     <script type="text/javascript" src="../js/site.js" DEFER></script>
 	<!-- Use me for a p5.js project -->
-	<script type="text/javascript" src="./js/main.js" DEFER></script>
-	<script type="text/javascript" src="./js/sketch.js" DEFER></script>
+	<script type="text/javascript" src="./js/main2.js" DEFER></script>
+	<script type="text/javascript" src="./js/sketch2.js" DEFER></script>
 </head>
 <body>
 	<!-- Style this page by changing the CSS in ../css/site.css or css/experiment.css -->
 	<main id="content">
 		<section>
 
-			<h1>Experiment 3 - Alternate Worlds OverWorld</h1>
+			<h1>Experiment 3 - Alternate Worlds Underworld</h1>
 
 			<div class="minor-section">
 				  <div id="canvasContainer" style="margin: 10px;"></div>
@@ -49,22 +49,22 @@
 			<div class="minor-section">
 				<h2>Description</h2>
 				<p>What are you trying to acomplish with this experiment?</p>
-				<p>Trying to create two overworlds</p>
-				<p>Codes: "_" = grass "m" = rock "r" = river "." = dirt</p>
-				<p>Life: The river changes states and influences some of the other blocks too.</p>
-				<p>using tiles from Micro Tileset - Overworld & Dungeon by thkaspar)</p>
+                <p>It's just a simple underworld with some chests and water. </p>
+                <p> has a flowing river with some trees and rocks around it. </p>
+                <p>Codes: "_" = grass "m" = rock "w" = water "." = dirt </p>
+                <p>Life: The water changes states.</p>
+                <p>using tiles from Micro Tileset - Overworld & Dungeon by thkaspar)</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Technical</h2>
 				<p>Describe in detail what you did technically and how it works?</p>
-				<p>Using bitmasking in order to do the autotiling and make sure it works well and then a random generation algorithm (directional tunnel) for the river</p>
+                <p>Using bitmasking in order to do the autotiling and make sure it works well and then a random generation algorithm (directional tunnel) for the dirt</p>
 			</div>
 
 			<div class="minor-section">
 				<h2>Reflection</h2>
 				<p>Each person that worked on the code should reflect on the process, the difficulties, and the successes of the experiment.</p>
-				<p>This assignment was difficult and I felt like I was rushing parts of it and I spent a lot of time on things that I didn't really need to as much. I wished I had spent my time much more wisely when it came to this autotilling project.</p>
 			</div>
 
 		</section>
@@ -72,7 +72,7 @@
 			<!-- Put link back to homepage here. -->
             <ul>
                 <li><a href="../index.html">Home</a></li>
-				<li><a href="overworld.html">Underworld version</a></li>
+                <li><a href="index.html">Overworld version</a></li>
             </ul>
 		</nav>
 	</main>
