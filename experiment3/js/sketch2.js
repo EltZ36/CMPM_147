@@ -31,6 +31,7 @@ function generateGrid(numCols, numRows) {
   
     for (let i = 0; i < grid.length; i++) {
       for (let j = 0; j < grid[i].length; j++) {
+        //timer logic from gpt and asking how to make a timer that triggers every 2 seconds 
         if((millis() - nextChange >= timer)){
               changeFlag()
               nextChange = millis()
