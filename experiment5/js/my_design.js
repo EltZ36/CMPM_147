@@ -163,7 +163,7 @@ function renderDesign(design, inspiration) {
 function mutateDesign(design, inspiration, rate) {
   let selectedOption = dropper.options[dropper.selectedIndex];
   if(selectedOption.innerHTML == "Hu Tao"){
-  design.bg = mut(design.bg, 0, 100, rate);
+  design.bg = mut(design.bg, 0, 50, rate);
   for (let box of design.fg) {
     //box.fill = mut(box.fill, 0, 255, rate);
     box.x = mut(box.x, 0, width, rate);
